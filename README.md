@@ -25,6 +25,8 @@ During the deployment, I encountered several critical blockers that required sys
 
 **Result:** Achieved a stable "Green" health status across all nodes.
 
-## 📊 Verification
+## 📊 Verification & Health Check
+
 ![IMG_0954](https://github.com/user-attachments/assets/49070057-0700-4b6f-863c-b2e886631bb7)
 
+<img width="1366" height="768" alt="Screenshot_2026-04-11_09_06_16" src="https://github.com/user-attachments/assets/58eb2928-9a6c-4490-a5b3-1ebb71f48bf9" />
