@@ -1,0 +1,15 @@
+#!/bin/bash
+
+read -r INPUT
+# Extract path and handle potential empty results
+FILE=$(echo "$INPUT" | jq -r '.parameters.alert.data.virustotal.source.file // empty')
+
+if [ -n "$FILE" ] && [ -f "$FILE" ]; then
+    # Force delete and verify
+    rm -f "$FILE"
+    if [ ! -f "$FILE" ]; then
+        echo "$(date) SUCCESS: Removed malicious file: $FILE" >> /var/ossec/logs/active-responses.log
+    else
+        echo "$(date) ERROR: Permissions failed to remove $FILE" >> /var/ossec/logs/active-responses.log
+    fi
+fi
