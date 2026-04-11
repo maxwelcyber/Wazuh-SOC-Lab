@@ -13,6 +13,7 @@ This project involved deploying a comprehensive Security Operations Center (SOC)
 1. **Server Deployment:** Installed the Wazuh Indexer, Server, and Dashboard. 
 2. **IDS Configuration:** Deployed Suricata and configured it to log into the Wazuh manager.
 3. **Threat Intelligence:** Configured [ossec.conf](./ossec.conf) to pull from VirusTotal API for real-time file analysis.
+4. **Active Response Automation:** Developed a custom Bash script to parse JSON [Active-Resposne](./remove-threat.sh) alert data and execute real-time threat remediation via automated file deletion.
 
 ## 🔧 Troubleshooting & Engineering Hurdles
 
