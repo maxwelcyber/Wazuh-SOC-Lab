@@ -6,14 +6,23 @@ This project involved deploying a comprehensive Security Operations Center (SOC)
 ## 🏗️ Architecture
 - **Wazuh Manager:** Centralized alerts and log analysis.
 - **Suricata:** Network Intrusion Detection (IDS) monitoring traffic.
-- **Agents:** (List the OS you monitored, e.g., Ubuntu/Windows).
+- **Agents:** (Kali-Linux).
 - **Integrations:** VirusTotal for automated file integrity checking.
 
 ## 🛠️ Implementation Steps
 1. **Server Deployment:** Installed the Wazuh Indexer, Server, and Dashboard. 
 2. **IDS Configuration:** Deployed Suricata and configured it to log into the Wazuh manager.
-3. **Threat Intelligence:** Configured `ossec.conf` to pull from VirusTotal API for real-time file analysis.
-4. **Troubleshooting:** (Briefly mention how you fixed the indexer communication issues to get them to "Green" status).
+3. **Threat Intelligence:** Configured [ossec.conf](./ossec.conf) to pull from VirusTotal API for real-time file analysis.
+
+## 🔧 Troubleshooting & Engineering Hurdles
+
+During the deployment, I encountered several critical blockers that required system-level optimization:
+
+- **Indexer Timeout & Startup Failures:** The Wazuh Indexer initially failed to start due to service timeouts. I diagnosed this as a resource contention issue where the service was attempting to initialize before the system had allocated sufficient resources.
+- **RAM Optimization:** Running the full stack (Indexer, Manager, Dashboard) pushed the hardware limits. I had to optimize JVM heap sizes and adjust memory allocation to prevent the OOM (Out of Memory) killer from terminating the Indexer process.
+- **Service Dependency Mapping:** I resolved communication gaps between the indexer and the manager by verifying listener ports and ensuring the security certificates were correctly mapped despite the initial resource-induced lag.
+
+**Result:** Achieved a stable "Green" health status across all nodes.
 
 ## 📊 Verification
-*(This is where you'll upload screenshots later showing the Wazuh dashboard with active alerts and Suricata logs).*
+<img width="1366" height="768" alt="Screenshot_2026-04-11_07_47_15" src="https://github.com/user-attachments/assets/120e7c53-b9ec-4e48-b14f-e4637737fec3" />
